@@ -15,17 +15,12 @@ export function ToDoCreateComponent() {
                     <Select
                         labelId="select-priority-label"
                         id="select-priority"
-                        //value={age}
-                        label="Priority"
-                    //onChange={handleChange}
-                    >
+                        label="Priority">
                         <MenuItem value={'P0 (high)'}>P0 (high)</MenuItem>
                         <MenuItem value={'P1 (medium)'}>P1 (medium)</MenuItem>
                         <MenuItem value={'P2 (low)'}>P2 (low)</MenuItem>
                     </Select>
                 </FormControl>
-
-
                 <Button variant="outlined">Add</Button>
             </div>
         </>

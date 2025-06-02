@@ -5,6 +5,7 @@ import './App.css'
 import { useHooks } from './hooks/ToDoHooks'
 import { ToDoListComponent } from './components/ToDoListComponent'
 import { ToDoCreateComponent } from './components/ToDoCreateComponent'
+import { ToDoFilterComponent } from './components/ToDoFilterComponent'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,6 +18,7 @@ function App() {
       <div>
         <ToDoCreateComponent />
       </div>
+      <ToDoFilterComponent />
       <h2>My ToDos</h2>
       <div>
         <ToDoListComponent todos={todos} />
