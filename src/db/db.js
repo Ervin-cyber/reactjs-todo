@@ -57,4 +57,12 @@ export async function deleteToDo(id) {
     return transaction.complete;
 }
 
+export async function updToDo(todo) {
+    const db = await openDb();
+    const transaction = db.transaction(TABLE_TODOS, "readwrite");
+    const store = transaction.objectStore(TABLE_TODOS);
+    store.put(todo);
+    return transaction.complete;
+}
+
 

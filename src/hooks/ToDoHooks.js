@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { getAll, addToDo } from "../db/db";
+import { getAll, addToDo, deleteToDo, updToDo } from "../db/db";
 
 export function useHooks() {
-    const [todos, setTodos] = useState([]);
+    const [todoList, setTodos] = useState([]);
 
     const load = async () => {
         const all = await getAll();
@@ -10,6 +10,15 @@ export function useHooks() {
     }
     const add = async (title, description, priority) => {
         await addToDo({ title, description, priority, created_date: new Date() });
+        load();
+    }
+    const removeToDo = async (id) => {
+        await deleteToDo(id);
+        load();
+    }
+
+    const updateToDo = async (id, title, description, priority) => {
+        await updToDo({ id, title, description, priority, created_date: new Date() });
         //load();
     }
 
@@ -17,5 +26,5 @@ export function useHooks() {
         load();
     }, []);
 
-    return { todos, add }
+    return { todoList, add, removeToDo, updateToDo }
 }

@@ -20,6 +20,7 @@ export function ToDoFilterComponent() {
                     labelId="select-priority-label"
                     id="select-priority"
                     label="Priority">
+                    <MenuItem></MenuItem>
                     <MenuItem value={'P0 (high)'}>P0 (high)</MenuItem>
                     <MenuItem value={'P1 (medium)'}>P1 (medium)</MenuItem>
                     <MenuItem value={'P2 (low)'}>P2 (low)</MenuItem>
@@ -31,6 +32,7 @@ export function ToDoFilterComponent() {
                     labelId="select-status-label"
                     id="select-status"
                     label="Status">
+                    <MenuItem></MenuItem>
                     <MenuItem value={'Completed'}>Completed</MenuItem>
                     <MenuItem value={'In progress'}>In progress</MenuItem>
                 </Select>

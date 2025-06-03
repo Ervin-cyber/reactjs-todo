@@ -8,21 +8,15 @@ import { ToDoCreateComponent } from './components/ToDoCreateComponent'
 import { ToDoFilterComponent } from './components/ToDoFilterComponent'
 
 function App() {
-  const [count, setCount] = useState(0)
-  const { todos, add } = useHooks();
-  //add('ToDo Title', 'Small description', 'P1 (medium)');
-
+  const { todoList, add, removeToDo, updateToDo } = useHooks();
+  //updateToDo(26, 'valami mas', 'egyeb description', 'P0 (high)');
   return (
     <>
       <h1>My ToDo application</h1>
-      <div>
-        <ToDoCreateComponent />
-      </div>
+      <ToDoCreateComponent addToDo={add} />
       <ToDoFilterComponent />
       <h2>My ToDos</h2>
-      <div>
-        <ToDoListComponent todos={todos} />
-      </div>
+      <ToDoListComponent todos={todoList} removeToDo={removeToDo} updateToDo={updateToDo} />
     </>
   )
 }
