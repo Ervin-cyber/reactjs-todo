@@ -36,5 +36,5 @@ export function useHooks() {
         load();
     }, []);
 
-    return { todoList, add, removeToDo, updateToDo, upsertToDo }
+    return { todoList, removeToDo, updateToDo, upsertToDo }
 }
