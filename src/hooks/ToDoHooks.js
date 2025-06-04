@@ -31,7 +31,7 @@ export function useHooks() {
         console.log(`filter:${JSON.stringify(filter)}`);
         let tempToDoList = all;
         if (filter.search) {
-            tempToDoList = all.filter((todo) => todo.title.toLowerCase().includes(filter.search));
+            tempToDoList = all.filter((todo) => todo.title.toLowerCase().includes(filter.search) || todo.description.toLowerCase().includes(filter.search));
         }
         if (filter.priority) {
             tempToDoList = tempToDoList.filter((todo) => (
