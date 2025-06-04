@@ -58,9 +58,12 @@ export function ToDoListComponent({ todos, removeToDo, updateToDo, edit }) {
                             <TableCell>{priority}</TableCell>
                             <TableCell>{created_date ? created_date.toLocaleString('ro-RO', { timezone: "Europe/Bucharest" }) : ''}</TableCell>
                             <TableCell>
-                                <form>
-                                    <Button variant="outlined" onClick={() => handleEdit(id, title, description, priority, created_date, status)}>Edit</Button>
-                                </form>
+                                {status == "In progress" ?
+                                    <form>
+                                        <Button variant="outlined" onClick={() => handleEdit(id, title, description, priority, created_date, status)}>Edit</Button>
+                                    </form>
+                                    : ''}
+
                             </TableCell>
                             <TableCell>
                                 <form >
