@@ -1,10 +1,30 @@
-import { Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
+import { Button, Table, TableBody, TableCell, TableHead, TableRow, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
+import { useState } from 'react';
 
 export function ToDoListComponent({ todos, removeToDo, updateToDo, edit }) {
+    const [open, setOpen] = useState(false);
+    const [deleteID, setDeleteID] = useState();
+
+    const handleClose = () => {
+        setOpen(false);
+    }
+
+    const handleCloseAndDelete = () => {
+        handleClose();
+        if (deleteID) {
+            removeToDo(deleteID)
+            setDeleteID();
+        }
+    }
+
+    const handleOpen = () => {
+        setOpen(true);
+    }
 
     function handleDelete(id) {
-        if (confirm('Are you sure?'))
-            removeToDo(id);
+        handleOpen();
+        setDeleteID(id);
+
     }
     function handleEdit(id, title, description, priority, created_date, status) {
         edit({ id, title, description, priority, created_date, status })
@@ -36,7 +56,7 @@ export function ToDoListComponent({ todos, removeToDo, updateToDo, edit }) {
                             <TableCell>{title}</TableCell>
                             <TableCell>{description}</TableCell>
                             <TableCell>{priority}</TableCell>
-                            <TableCell>{created_date ? created_date.toLocaleString() : ''}</TableCell>
+                            <TableCell>{created_date ? created_date.toLocaleString('ro-RO', { timezone: "Europe/Bucharest" }) : ''}</TableCell>
                             <TableCell>
                                 <form>
                                     <Button variant="outlined" onClick={() => handleEdit(id, title, description, priority, created_date, status)}>Edit</Button>
@@ -58,6 +78,25 @@ export function ToDoListComponent({ todos, removeToDo, updateToDo, edit }) {
                     ))}
                 </TableBody>
             </Table>
+            <Dialog open={open}
+                onClose={handleClose}>
+                <DialogTitle>
+                    {"Confirmation required!"}
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        {"Are you sure you want to delete it?"}
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>
+                        {"Cancel"}
+                    </Button>
+                    <Button onClick={handleCloseAndDelete}>
+                        {"Yes"}
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </>
     )
 }
