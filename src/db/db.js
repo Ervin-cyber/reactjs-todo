@@ -5,7 +5,7 @@ async function openDb() {
     return new Promise((resolve, reject) => {
         const request = indexedDB.open(DATABASE_NAME, 1);
         request.onupgradeneeded = () => {
-            console.log('onupgradeneeded')
+            //console.log('onupgradeneeded')
             let db = request.result;
             if (!db.objectStoreNames.contains(TABLE_TODOS)) {
                 db.createObjectStore(TABLE_TODOS, {
@@ -31,11 +31,11 @@ export async function getAll() {
         const transaction = db.transaction(TABLE_TODOS, "readonly");
         const todos = transaction.objectStore(TABLE_TODOS).getAll();
         todos.onsuccess = () => {
-            console.log(`onsucces:${JSON.stringify(todos.result)}`);
+            //console.log(`onsucces:${JSON.stringify(todos.result)}`);
             resolve(todos.result);
         }
         todos.onerror = (error) => {
-            console.log(`onerror:${error}`);
+            //console.log(`onerror:${error}`);
             reject(error);
         }
     });

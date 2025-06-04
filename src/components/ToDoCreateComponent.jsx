@@ -1,21 +1,20 @@
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 
-export function ToDoCreateComponent({ addToDo, editToDo }) {
+export function ToDoCreateComponent({ upsert, editToDo }) {
     const [id, setID] = useState(undefined);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [priority, setPriority] = useState("");
     const [createdDate, setCreatedDate] = useState("");
-    const [status, setStatus] = useState("");
+    const [status, setStatus] = useState("In progress");
     const [actionButtonText, setActionButtonText] = useState("Add");
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        addToDo(id, title, description, priority, createdDate == "" ? new Date() : createdDate, status);
+    const handleSubmit = () => {
+        upsert(id, title, description, priority, createdDate == "" ? new Date() : createdDate, status);
     }
     useEffect(() => {
         if (editToDo) {
-            console.log(`todo:${JSON.stringify(editToDo)}`)
+            //(`todo:${JSON.stringify(editToDo)}`)
             setID(editToDo.id)
             setTitle(editToDo.title)
             setDescription(editToDo.description)
