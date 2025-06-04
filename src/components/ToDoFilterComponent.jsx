@@ -2,6 +2,7 @@ import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@m
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { DatePicker } from "@mui/x-date-pickers-pro";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { enGB } from "date-fns/locale";
 import { useState } from "react";
 
 export function ToDoFilterComponent({ loadToDos }) {
@@ -45,7 +46,7 @@ export function ToDoFilterComponent({ loadToDos }) {
                     <MenuItem value={'In progress'}>In progress</MenuItem>
                 </Select>
             </FormControl>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={enGB}>
                 <FormControl sx={{ m: 1, maxWidth: 170 }}>
                     <DatePicker label="Date From" value={dateFrom} onChange={(newDate) => setDateFrom(newDate)} />
                 </FormControl>
